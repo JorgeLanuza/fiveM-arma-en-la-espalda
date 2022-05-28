@@ -49,8 +49,8 @@ Citizen.CreateThread(function()
       end   
       -- Quita de atrás si está equipado o dropeado --
       for name, attached_object in pairs(attached_weapons) do
-          -- equipped? delete it from back:
-          if GetSelectedPedWeapon(me) ==  attached_object.hash or not HasPedGotWeapon(me, attached_object.hash, false) then -- equipped or not in weapon wheel
+          -- equipado? borrar de atras
+          if GetSelectedPedWeapon(me) ==  attached_object.hash or not HasPedGotWeapon(me, attached_object.hash, false) then -- equipado o no en la rueda de armas
             DeleteObject(attached_object.handle)
             attached_weapons[name] = nil
           end
@@ -71,7 +71,7 @@ function AttachWeapon(attachModel,modelHash,boneNumber,x,y,z,xR,yR,zR, isMelee)
     handle = CreateObject(GetHashKey(attachModel), 1.0, 1.0, 1.0, true, true, false)
   }
 
-  if isMelee then x = 0.11 y = -0.14 z = 0.0 xR = -75.0 yR = 185.0 zR = 92.0 end -- reposition for melee items
+  if isMelee then x = 0.11 y = -0.14 z = 0.0 xR = -75.0 yR = 185.0 zR = 92.0 end 
   if attachModel == "prop_ld_jerrycan_01" then x = x + 0.3 end
 	AttachEntityToEntity(attached_weapons[attachModel].handle, GetPlayerPed(-1), bone, x, y, z, xR, yR, zR, 1, 1, 0, 0, 2, 1)
 end
